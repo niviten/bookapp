@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const testRouter = require(path.join(__dirname, 'routes', 'test', 'test.js'))
+const testRouter = require(path.join(__dirname, 'routes', 'test.js'))
 app.use('/test', testRouter)
 
 async function connectToDB() {
