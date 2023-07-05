@@ -11,8 +11,13 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const testRouter = require(path.join(__dirname, 'routes', 'test.js'))
+const testRouter = require(path.join(__dirname, 'routes', 'test'))
 app.use('/test', testRouter)
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 
 async function connectToDB() {
   await mongoose.connect(process.env.MONGODB_URI)
